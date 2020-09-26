@@ -10,7 +10,7 @@ namespace EmployeeDrugScreensImproved
     {
         static void Main(string[] args)
         {
-            Console.ReadLine();
+            
         }
     }
 }
