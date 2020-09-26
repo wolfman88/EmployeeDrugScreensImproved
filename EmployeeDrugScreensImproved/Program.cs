@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,19 @@ namespace EmployeeDrugScreensImproved
     {
         static void Main(string[] args)
         {
-            
+            string line = "";
+
+            StreamReader reader = new StreamReader(@"C:\Users\rbask\source\repos\EmployeeDrugScreensImproved\EmployeeDrugScreensImproved\EmployeeRecords.csv");
+            Dictionary<int, DateTime> employeeInfoData = new Dictionary<int, DateTime>();
+            //Dictionary<int, DateTime> employeesToTest = new Dictionary<int, DateTime>();
+            //Dictionary<int, DateTime> employeesSelectedForTesting = new Dictionary<int, DateTime>();
+
+            while (line != null)
+            {
+                line = reader.ReadLine();
+
+
+            }
         }
     }
 }
