@@ -14,7 +14,7 @@ namespace EmployeeDrugScreensImproved
             string line = "";
 
             StreamReader reader = new StreamReader(@"C:\Users\rbask\source\repos\EmployeeDrugScreensImproved\EmployeeDrugScreensImproved\EmployeeRecords.csv");
-            Dictionary<int, DateTime> employeeInfoData = new Dictionary<int, DateTime>();
+            Dictionary<string, Object> employeeInfoData = new Dictionary<string, Object>();
             //Dictionary<int, DateTime> employeesToTest = new Dictionary<int, DateTime>();
             //Dictionary<int, DateTime> employeesSelectedForTesting = new Dictionary<int, DateTime>();
 
@@ -22,7 +22,11 @@ namespace EmployeeDrugScreensImproved
             {
                 line = reader.ReadLine();
 
-
+                if (line != null)
+                {
+                    string[] employeeInformation = line.Split(',');
+                    
+                }
             }
         }
     }
