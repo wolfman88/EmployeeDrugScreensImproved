@@ -90,10 +90,11 @@ namespace EmployeeDrugScreensImproved
             Console.WriteLine("1: ID & Last test date");
             Console.WriteLine("2: ID, Last & first name, Last test Date");
             Console.WriteLine("3: ID, Last & first name, Phone Number, Last test Date");
+            Console.WriteLine("hit ONLY the enter key to exit at any point");
             //Console.WriteLine("4: ID, Last & first name, , Last test Date");
 
             string userInput = Console.ReadLine();
-            int switchRequest = Convert.ToInt32(userInput);
+            bool tryConvert = int.TryParse(userInput, out int switchRequest);
 
             switch (switchRequest)
             {
