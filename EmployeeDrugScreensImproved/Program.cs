@@ -82,6 +82,12 @@ namespace EmployeeDrugScreensImproved
                 else
                     x--;
             }
+
+            foreach (KeyValuePair<string, DateTime> entry in employeesSelectedForTesting)
+            {
+                Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Last Drug TestL {1: MM/dd/yy}", entry.Key, entry.Value);
+                selection++;
+            }
             Console.ReadLine();
         }
     }
