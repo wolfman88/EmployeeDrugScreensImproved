@@ -25,7 +25,7 @@ namespace EmployeeDrugScreensImproved
                 if (line != null)
                 {
                     string[] employeeInformation = line.Split(',');
-                    
+                    // stuck here
                 }
             }
         }
