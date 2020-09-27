@@ -19,7 +19,7 @@ namespace EmployeeDrugScreensImproved
 
             StreamReader reader = new StreamReader(@"EmployeeRecords.csv");
             Dictionary<string, Employee> employeeInfoData = new Dictionary<string, Employee>();
-            Dictionary<string, DateTime> employeesEligibleForTesting = new Dictionary<string, DateTime>();
+            Dictionary<string, DateTime> employeesEligible = new Dictionary<string, DateTime>();
             Dictionary<string, DateTime> employeesSelectedForTesting = new Dictionary<string, DateTime>();
 
             int i = 1;
@@ -66,13 +66,21 @@ namespace EmployeeDrugScreensImproved
             {
                 if (entry.Value.DrugTestDateLast <= dateTestLimit)
                 {
-                    employeesEligibleForTesting.Add(entry.Key, entry.Value.DrugTestDateLast); // pass results into a new dictionary called employeesEligableForTesting.
+                    employeesEligible.Add(entry.Key, entry.Value.DrugTestDateLast); // pass results into a new dictionary called employeesEligableForTesting.
                 }
             }
 
             for (int x = 0; x < 50; x++)
             {
+                int selectionNext = rand.Next(employeesEligible.Count);
 
+                if (!employeesSelectedForTesting.ContainsKey(employeesEligible.ElementAt(selectionNext).Key))
+                {
+                    employeesSelectedForTesting.Add(employeesEligible.ElementAt(selectionNext).Key,
+                        employeesEligible.ElementAt(selectionNext).Value);
+                }
+                else
+                    x--;
             }
             Console.ReadLine();
         }
