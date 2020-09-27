@@ -19,8 +19,8 @@ namespace EmployeeDrugScreensImproved
 
             StreamReader reader = new StreamReader(@"EmployeeRecords.csv");
             Dictionary<string, Employee> employeeInfoData = new Dictionary<string, Employee>();
-            Dictionary<string, DateTime> employeesEligible = new Dictionary<string, DateTime>();
-            Dictionary<string, DateTime> employeesSelectedForTesting = new Dictionary<string, DateTime>();
+            Dictionary<string, Employee> employeesEligible = new Dictionary<string, Employee>();
+            Dictionary<string, Employee> employeesSelectedForTesting = new Dictionary<string, Employee>();
 
             int i = 1;
 
@@ -66,8 +66,10 @@ namespace EmployeeDrugScreensImproved
             {
                 if (entry.Value.DrugTestDateLast <= dateTestLimit)
                 {
-                    employeesEligible.Add(entry.Key, entry.Value.DrugTestDateLast); // pass results into a new dictionary called employeesEligableForTesting.
-                } // Next to do: continue to pass full employee objects to next dictionary for the perposes of displaying more information in console.
+                    employeesEligible.Add(entry.Key, entry.Value); // pass results into a new dictionary called employeesEligableForTesting.
+                } 
+                // Next to do: continue to pass full employee objects to next dictionary for the perposes of displaying more information in console.
+                // COMPLETE: Only issue, hard coded output... not efficent.
             }
 
             for (int x = 0; x < 50; x++)
@@ -83,9 +85,32 @@ namespace EmployeeDrugScreensImproved
                     x--;
             }
 
-            foreach (KeyValuePair<string, DateTime> entry in employeesSelectedForTesting)
+            Console.WriteLine("");
+
+            string userInput = Console.ReadLine();
+            int switchRequest = Convert.ToInt32(userInput);
+
+            switch (switchRequest)
             {
-                Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Last Drug Test: {1: MM/dd/yy}", entry.Key, entry.Value);
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
+            }
+
+            foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
+            {
+                Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Employee Name: {1}, {2} | Last Drug Test: {3: MM/dd/yy}", entry.Key, 
+                    entry.Value.LastName, entry.Value.FirstName, entry.Value.DrugTestDateLast);
+
                 selection++;
             }
             Console.ReadLine();
