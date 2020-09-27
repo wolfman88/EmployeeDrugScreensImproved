@@ -85,7 +85,12 @@ namespace EmployeeDrugScreensImproved
                     x--;
             }
 
-            Console.WriteLine("");
+            Console.WriteLine("Employee information Request");
+            Console.WriteLine("Number entered outputs information specified in the following list:");
+            Console.WriteLine("1: ID & Last test date");
+            Console.WriteLine("2: ID, Last & first name, Last test Date");
+            Console.WriteLine("3: ID, Last & first name, Phone Number, Last test Date");
+            //Console.WriteLine("4: ID, Last & first name, , Last test Date");
 
             string userInput = Console.ReadLine();
             int switchRequest = Convert.ToInt32(userInput);
@@ -95,23 +100,30 @@ namespace EmployeeDrugScreensImproved
                 case 0:
                     break;
                 case 1:
+                    foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
+                    {
+                        Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Last Drug Test: {1: MM/dd/yy}", entry.Key, entry.Value.DrugTestDateLast);
+                        selection++;
+                    }
                     break;
                 case 2:
+                    foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
+                    {
+                        Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Employee Name: {1}, {2} | Last Drug Test: {3: MM/dd/yy}", entry.Key,
+                            entry.Value.LastName, entry.Value.FirstName, entry.Value.DrugTestDateLast);
+                        selection++;
+                    }
                     break;
                 case 3:
-                    break;
-                case 4:
+                    foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
+                    {
+                        Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Employee Name: {1}, {2} | Phone #: {3} | Last Drug Test: {4: MM/dd/yy}", 
+                            entry.Key, entry.Value.LastName, entry.Value.FirstName, entry.Value.PhoneNumber, entry.Value.DrugTestDateLast);
+                        selection++;
+                    }
                     break;
                 default:
                     break;
-            }
-
-            foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
-            {
-                Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Employee Name: {1}, {2} | Last Drug Test: {3: MM/dd/yy}", entry.Key, 
-                    entry.Value.LastName, entry.Value.FirstName, entry.Value.DrugTestDateLast);
-
-                selection++;
             }
             Console.ReadLine();
         }
