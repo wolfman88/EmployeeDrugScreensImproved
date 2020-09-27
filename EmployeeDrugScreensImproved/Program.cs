@@ -12,11 +12,15 @@ namespace EmployeeDrugScreensImproved
         static void Main(string[] args)
         {
             string line = "";
+            int selection = 1;
+            int numDayTestLimit = -180;
+            DateTime dateTestLimit = DateTime.Today.AddDays(numDayTestLimit);
+            var rand = new Random();
 
             StreamReader reader = new StreamReader(@"EmployeeRecords.csv");
             Dictionary<string, Employee> employeeInfoData = new Dictionary<string, Employee>();
-            //Dictionary<int, DateTime> employeesToTest = new Dictionary<int, DateTime>();
-            //Dictionary<int, DateTime> employeesSelectedForTesting = new Dictionary<int, DateTime>();
+            Dictionary<string, DateTime> employeesEligibleForTesting = new Dictionary<string, DateTime>();
+            Dictionary<string, DateTime> employeesSelectedForTesting = new Dictionary<string, DateTime>();
 
             int i = 1;
 
@@ -55,6 +59,14 @@ namespace EmployeeDrugScreensImproved
                         employeeInfoData.Add(employeeInformation[0], emp);
                     }
                     i++;
+                }
+            }
+
+            foreach (KeyValuePair<string, Employee> entry in employeeInfoData) // Loop over employeeInfoData Dictionary to get employes not drug tested in 6 months or more.
+            {
+                if (entry.Value.DrugTestDateLast <= dateTestLimit)
+                {
+                    employeesEligibleForTesting.Add(entry.Key, entry.Value.DrugTestDateLast); // pass results into a new dictionary called employeesEligableForTesting.
                 }
             }
             Console.ReadLine();
