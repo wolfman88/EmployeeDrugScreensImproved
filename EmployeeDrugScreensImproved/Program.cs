@@ -67,7 +67,7 @@ namespace EmployeeDrugScreensImproved
                 if (entry.Value.DrugTestDateLast <= dateTestLimit)
                 {
                     employeesEligible.Add(entry.Key, entry.Value.DrugTestDateLast); // pass results into a new dictionary called employeesEligableForTesting.
-                }
+                } // Next to do: continue to pass full employee objects to next dictionary for the perposes of displaying more information in console.
             }
 
             for (int x = 0; x < 50; x++)
@@ -78,7 +78,7 @@ namespace EmployeeDrugScreensImproved
                 {
                     employeesSelectedForTesting.Add(employeesEligible.ElementAt(selectionNext).Key,
                         employeesEligible.ElementAt(selectionNext).Value);
-                }
+                } // Next to do: add full value of employee object into final dictionary and possibly ask user what information they require.
                 else
                     x--;
             }
