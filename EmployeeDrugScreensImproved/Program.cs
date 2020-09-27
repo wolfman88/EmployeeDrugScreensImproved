@@ -69,6 +69,11 @@ namespace EmployeeDrugScreensImproved
                     employeesEligibleForTesting.Add(entry.Key, entry.Value.DrugTestDateLast); // pass results into a new dictionary called employeesEligableForTesting.
                 }
             }
+
+            for (int x = 0; x < 50; x++)
+            {
+
+            }
             Console.ReadLine();
         }
     }
