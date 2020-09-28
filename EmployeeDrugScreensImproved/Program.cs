@@ -90,6 +90,7 @@ namespace EmployeeDrugScreensImproved
             Console.WriteLine("1: ID & Last test date");
             Console.WriteLine("2: ID, Last & first name, Last test Date");
             Console.WriteLine("3: ID, Last & first name, Phone Number, Last test Date");
+            Console.WriteLine("4: ID, Last & first name, salery before last raise.");
             Console.WriteLine("hit ONLY the enter key to exit at any point");
             //Console.WriteLine("4: ID, Last & first name, , Last test Date");
 
@@ -121,6 +122,15 @@ namespace EmployeeDrugScreensImproved
                         Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Employee Name: {1}, {2} | Phone #: {3} | Last Drug Test: {4: MM/dd/yy}", 
                             entry.Key, entry.Value.LastName, entry.Value.FirstName, entry.Value.PhoneNumber, entry.Value.DrugTestDateLast);
                         selection++;
+                    }
+                    break;
+                case 4:
+                    foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
+                    {
+                        //decimal previousSalary = entry.Value.Salary / (entry.Value.LastPayHike + 1);
+                        Console.WriteLine($"Selection #: {selection}" + "  | ID: {0}" + "Previous Salary: $" + 
+                            $"{Convert.ToDecimal(entry.Value.Salary) / (1 + Convert.ToDecimal(entry.Value.LastPayHike))}", 
+                            entry.Key);
                     }
                     break;
                 default:
