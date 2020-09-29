@@ -92,6 +92,10 @@ namespace EmployeeDrugScreensImproved
       Console.WriteLine("2: ID, Last & first name, Last test Date");
       Console.WriteLine("3: ID, Last & first name, Phone Number, Last test Date");
       Console.WriteLine("4: ID, Last & first name, salery before last raise.");
+      Console.WriteLine("5: ID, Duration of employment");
+      Console.WriteLine("6: ID, Employee Age");
+      Console.WriteLine("7: ID, Contact info 50 Random Employee's for drug testing: (Last & first name, Phone number, State, City, Zipcode)");
+      Console.WriteLine("8: ID, Usernames & Passwords list");
       Console.WriteLine("hit ONLY the enter key to exit at any point");
       //Console.WriteLine("4: ID, Last & first name, , Last test Date");
 
@@ -105,14 +109,14 @@ namespace EmployeeDrugScreensImproved
         case 1:
           foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
           {
-            Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Last Drug Test: {1: MM/dd/yy}", entry.Key, entry.Value.DrugTestDateLast);
+            Console.WriteLine($"Selection #: {selection} |" + "ID: {0} | Last Drug Test: {1: MM/dd/yy}", entry.Key, entry.Value.DrugTestDateLast);
             selection++;
           }
           break;
         case 2:
           foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
           {
-            Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Employee Name: {1}, {2} | Last Drug Test: {3: MM/dd/yy}", entry.Key,
+            Console.WriteLine($"Selection #: {selection} |" + "ID: {0} | Employee Name: {1}, {2} | Last Drug Test: {3: MM/dd/yy}", entry.Key,
                 entry.Value.LastName, entry.Value.FirstName, entry.Value.DrugTestDateLast);
             selection++;
           }
@@ -120,7 +124,7 @@ namespace EmployeeDrugScreensImproved
         case 3:
           foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
           {
-            Console.WriteLine($"Selection #:{selection}   " + "ID: {0} | Employee Name: {1}, {2} | Phone #: {3} | Last Drug Test: {4: MM/dd/yy}",
+            Console.WriteLine($"Selection #: {selection} |" + "ID: {0} | Employee Name: {1}, {2} | Phone #: {3} | Last Drug Test: {4: MM/dd/yy}",
                 entry.Key, entry.Value.LastName, entry.Value.FirstName, entry.Value.PhoneNumber, entry.Value.DrugTestDateLast);
             selection++;
           }
@@ -128,7 +132,7 @@ namespace EmployeeDrugScreensImproved
         case 4:
           foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
           {
-            Console.WriteLine($"Selection #: {selection}" + "  | ID: {0}" + "|  Salary increase amount: $" +
+            Console.WriteLine($"Line #: {selection}" + " | ID: {0}" + "|  Salary increase amount: $" +
                 $"{Convert.ToInt32(entry.Value.Salary) - Convert.ToInt32(entry.Value.Salary / (1 + entry.Value.LastPayHike))}",
                 entry.Key);
             selection++;
@@ -141,8 +145,8 @@ namespace EmployeeDrugScreensImproved
             long years = months / 12;
             long monthRemaining = months % 12;
 
-            Console.WriteLine($"Selection #: {selection}" + "  | ID: {0}" + $"|  Employed for: " +
-              $" {years} Years, {monthRemaining} Months");
+            Console.WriteLine($"Line #: {selection}" + " | ID: {0}" + $"|  Employed for: " +
+              $" {years} Years, {monthRemaining} Months", entry.Key);
 
             // https://www.google.com/search?q=C%23+decimal+part+of+double&oq=C%23+decimal+part+of+double&aqs=chrome..69i57j69i58.8685j0j4&sourceid=chrome&ie=UTF-8
             // https://www.codeproject.com/Questions/1097824/How-to-get-the-decimal-part-of-a-double-Csharp-wit
@@ -153,6 +157,36 @@ namespace EmployeeDrugScreensImproved
 
             Console.WriteLine($"Selection #: {selection}" + "  | ID: {0}" + $"|  Employed for: " +
               $" {years} Years, { } Months");*/
+            selection++;
+          }
+          break;
+        case 6:
+          foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
+          {
+            long months = DateAndTime.DateDiff(DateInterval.Month, entry.Value.DateOfBirth, DateTime.Now);
+            long years = months / 12;
+            long monthRemaining = months % 12;
+
+            Console.WriteLine($"Line #: {selection}" + " | ID: {0}" + $"|  Employee's Age: " +
+              $" {years} Years, {monthRemaining} Months", entry.Key);
+            selection++;
+          }
+          break;
+        case 7:
+          foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
+          {
+            Console.WriteLine($"Selection #: {selection} |" + " ID: {0} | Employee Name: {1}, {2} | Phone Number: {3} " +
+              " |  State: {4} | City: {5} | Zipcode: {6}", entry.Key, entry.Value.LastName, entry.Value.FirstName, 
+              entry.Value.PhoneNumber, entry.Value.State, entry.Value.City, entry.Value.ZipCode);
+            selection++;
+          }
+          break;
+        case 8:
+          foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
+          {
+            Console.WriteLine($"Line #: {selection} |" + " ID: {0} | Employee Name: {1}, {2} | Username: {3} | Password: {4}", entry.Key, 
+              entry.Value.LastName, entry.Value.FirstName, entry.Value.UserName, entry.Value.Password);
+            selection++;
           }
           break;
         default:
@@ -161,7 +195,7 @@ namespace EmployeeDrugScreensImproved
       /*DateTime birthday = new DateTime(1988, 08, 02);
       int years2 = DateTime.Now.Year - birthday.Year;
       int months2 = DateTime.Now.Month - birthday.Month;*/
-      
+
 
       Console.ReadLine();
     }
