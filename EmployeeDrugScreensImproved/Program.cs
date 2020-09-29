@@ -143,12 +143,26 @@ namespace EmployeeDrugScreensImproved
 
             Console.WriteLine($"Selection #: {selection}" + "  | ID: {0}" + $"|  Employed for: " +
               $" {years} Years, {monthRemaining} Months");
+
+            // https://www.google.com/search?q=C%23+decimal+part+of+double&oq=C%23+decimal+part+of+double&aqs=chrome..69i57j69i58.8685j0j4&sourceid=chrome&ie=UTF-8
+            // https://www.codeproject.com/Questions/1097824/How-to-get-the-decimal-part-of-a-double-Csharp-wit
+
+            /*TimeSpan days = DateTime.Now - entry.Value.DateHired;
+            double years = days.Days / 365.2425;
+            double months = 
+
+            Console.WriteLine($"Selection #: {selection}" + "  | ID: {0}" + $"|  Employed for: " +
+              $" {years} Years, { } Months");*/
           }
           break;
         default:
           break;
-          //DateTime.Now - DateTime.entry.Value.DateHired
       }
+      /*DateTime birthday = new DateTime(1988, 08, 02);
+      int years2 = DateTime.Now.Year - birthday.Year;
+      int months2 = DateTime.Now.Month - birthday.Month;*/
+      
+
       Console.ReadLine();
     }
   }
