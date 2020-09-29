@@ -127,7 +127,6 @@ namespace EmployeeDrugScreensImproved
                 case 4:
                     foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
                     {
-                        //decimal previousSalary = entry.Value.Salary / (entry.Value.LastPayHike + 1);
                         Console.WriteLine($"Selection #: {selection}" + "  | ID: {0}" + "Previous Salary: $" + 
                             $"{Convert.ToDecimal(entry.Value.Salary) / (1 + Convert.ToDecimal(entry.Value.LastPayHike))}", 
                             entry.Key);
