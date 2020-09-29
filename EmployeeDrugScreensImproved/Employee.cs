@@ -23,8 +23,8 @@ namespace EmployeeDrugScreensImproved
         public string EMail { get; set; } // 7
         public DateTime DateOfBirth { get; set; } // 8
         public DateTime DateHired { get; set; } // 9
-        public string Salary { get; set; } // 10
-        public string LastPayHike { get; set; } // 11
+        public decimal Salary { get; set; } // 10
+        public decimal LastPayHike { get; set; } // 11
         public string SSN { get; set; } // 12
         public string PhoneNumber { get; set; } // 13
         public string County { get; set; } // 14
