@@ -96,6 +96,7 @@ namespace EmployeeDrugScreensImproved
       Console.WriteLine("6: ID, Employee Age");
       Console.WriteLine("7: ID, Contact info 50 Random Employee's for drug testing: (Last & first name, Phone number, State, City, Zipcode)");
       Console.WriteLine("8: ID, Usernames & Passwords list");
+      Console.WriteLine("9: ID, age when hired");
       Console.WriteLine("hit ONLY the enter key to exit at any point");
       //Console.WriteLine("4: ID, Last & first name, , Last test Date");
 
@@ -189,13 +190,29 @@ namespace EmployeeDrugScreensImproved
             selection++;
           }
           break;
+        case 9:
+          foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
+          {
+            long birthMonths = DateAndTime.DateDiff(DateInterval.Month, entry.Value.DateOfBirth, DateTime.Now);
+            long birthYears = birthMonths / 12;
+            //long birthMonthRemaining = birthMonths % 12;
+
+            long months = DateAndTime.DateDiff(DateInterval.Month, entry.Value.DateHired, DateTime.Now);
+            long years = months / 12;
+
+            long yearsAtHire = birthYears - years;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Line #: {selection}" + " | ID: {0}" + $"|  Age when hired: " + 
+              $"{yearsAtHire} Years", entry.Key);
+            selection++;
+          }
+          break;
         default:
           break;
       }
       /*DateTime birthday = new DateTime(1988, 08, 02);
       int years2 = DateTime.Now.Year - birthday.Year;
       int months2 = DateTime.Now.Month - birthday.Month;*/
-
 
       Console.ReadLine();
     }
