@@ -178,7 +178,7 @@ namespace EmployeeDrugScreensImproved
           foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
           {
             Console.WriteLine($"Selection #: {selection} |" + " ID: {0} | Employee Name: {1}, {2} | Phone Number: {3} " +
-              " |  State: {4} | City: {5} | Zipcode: {6}", entry.Key, entry.Value.LastName, entry.Value.FirstName, 
+              " |  State: {4} | City: {5} | Zipcode: {6}", entry.Key, entry.Value.LastName, entry.Value.FirstName,
               entry.Value.PhoneNumber, entry.Value.State, entry.Value.City, entry.Value.ZipCode);
             selection++;
           }
@@ -186,7 +186,7 @@ namespace EmployeeDrugScreensImproved
         case 8:
           foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
           {
-            Console.WriteLine($"Line #: {selection} |" + " ID: {0} | Employee Name: {1}, {2} | Username: {3} | Password: {4}", entry.Key, 
+            Console.WriteLine($"Line #: {selection} |" + " ID: {0} | Employee Name: {1}, {2} | Username: {3} | Password: {4}", entry.Key,
               entry.Value.LastName, entry.Value.FirstName, entry.Value.UserName, entry.Value.Password);
             selection++;
           }
@@ -203,7 +203,7 @@ namespace EmployeeDrugScreensImproved
 
             long yearsAtHire = birthYears - years;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Line #: {selection}" + " | ID: {0}" + $"|  Age when hired: " + 
+            Console.WriteLine($"Line #: {selection}" + " | ID: {0}" + $"|  Age when hired: " +
               $"{yearsAtHire} Years", entry.Key);
             selection++;
           }
@@ -219,24 +219,17 @@ namespace EmployeeDrugScreensImproved
             {
               listEmployeesOverTenYearsService.Add(Convert.ToString(entry.Key));
             }
-            
           }
           foreach (string key in listEmployeesOverTenYearsService)
-            {
-              /*foreach (KeyValuePair<string, Employee> x in employeeInfoData)
-              {*/
-                if (employeeInfoData.ContainsKey(key))
-                {
-              employeeInfoData[key].Salary += 100;
-                  /*entry.Value.Salary = entry.Value.Salary + (entry.Value.Salary * entry.Value.LastPayHike);*/
-                }
-              /*}*/
-            }
-          /*foreach (string entry in listEmployeesOverTenYearsService)
           {
-            //Console.WriteLine("{0}", entry.ToString());
-
-          }*/
+            if (employeeInfoData.ContainsKey(key))
+            {
+              Console.WriteLine($"Before Raise: {employeeInfoData[key].Salary}");
+              employeeInfoData[key].Salary = employeeInfoData[key].Salary * Convert.ToDecimal(1.05);
+              Console.WriteLine($"after raise: {employeeInfoData[key].Salary}");
+              employeeInfoData[key].LastPayHike = Convert.ToDecimal(0.05);
+            }
+          }
           break;
         default:
           break;
