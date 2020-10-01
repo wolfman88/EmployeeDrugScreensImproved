@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -206,6 +207,36 @@ namespace EmployeeDrugScreensImproved
               $"{yearsAtHire} Years", entry.Key);
             selection++;
           }
+          break;
+        case 10:
+          List<string> listEmployeesOverTenYearsService = new List<string>();
+
+          foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
+          {
+            long months = DateAndTime.DateDiff(DateInterval.Month, entry.Value.DateHired, DateTime.Now);
+            long years = months / 12;
+            if (years >= 10)
+            {
+              listEmployeesOverTenYearsService.Add(Convert.ToString(entry.Key));
+            }
+            
+          }
+          foreach (string key in listEmployeesOverTenYearsService)
+            {
+              /*foreach (KeyValuePair<string, Employee> x in employeeInfoData)
+              {*/
+                if (employeeInfoData.ContainsKey(key))
+                {
+              employeeInfoData[key].Salary += 100;
+                  /*entry.Value.Salary = entry.Value.Salary + (entry.Value.Salary * entry.Value.LastPayHike);*/
+                }
+              /*}*/
+            }
+          /*foreach (string entry in listEmployeesOverTenYearsService)
+          {
+            //Console.WriteLine("{0}", entry.ToString());
+
+          }*/
           break;
         default:
           break;
