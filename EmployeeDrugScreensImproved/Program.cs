@@ -114,6 +114,29 @@ namespace EmployeeDrugScreensImproved
             Console.WriteLine($"Selection #: {selection} |" + "ID: {0} | Last Drug Test: {1: MM/dd/yy}", entry.Key, entry.Value.DrugTestDateLast);
             selection++;
           }
+          string docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+          using (StreamWriter outputCSVFile = new StreamWriter(Path.Combine(docPath, "Employees to be Drug Tested.csv")))
+          {
+            string[] csvFileHead = new string[]
+            {
+          "ID", "Prefix", "First Name", "Middle Initial", "Last Name", "Gender", "Date of Last Drug Test", "E-Mail", "Date of Birth",
+          "Date Hired", "SSN", "Phone Number", "County", "City", "State", "Zip Code"
+            };
+            outputCSVFile.WriteLine(string.Join(",", csvFileHead));
+
+            foreach (KeyValuePair<string, Employee> item in employeesSelectedForTesting)
+            {
+              string[] empValues = new string[]
+              {
+            item.Value.ID, item.Value.NamePrefix, item.Value.FirstName, item.Value.MiddleInitial, item.Value.LastName, item.Value.Gender,
+            Convert.ToString(item.Value.DrugTestDateLast), item.Value.EMail, Convert.ToString(item.Value.DateOfBirth),
+            Convert.ToString(item.Value.DateHired), item.Value.SSN, item.Value.PhoneNumber, item.Value.County, item.Value.City, 
+                item.Value.State, item.Value.ZipCode
+              };
+              outputCSVFile.WriteLine(string.Join(",", empValues));
+            }
+          }
           break;
         case 2:
           foreach (KeyValuePair<string, Employee> entry in employeesSelectedForTesting)
@@ -231,6 +254,9 @@ namespace EmployeeDrugScreensImproved
             }
           }
           break;
+        case 11:
+
+          break;
         default:
           break;
       }
@@ -240,5 +266,6 @@ namespace EmployeeDrugScreensImproved
 
       Console.ReadLine();
     }
+
   }
 }
