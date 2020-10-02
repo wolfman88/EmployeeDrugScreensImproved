@@ -157,11 +157,14 @@ namespace EmployeeDrugScreensImproved
         case 4:
           foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
           {
-            Console.WriteLine($"Line #: {selection}" + " | ID: {0}" + "|  Salary increase amount: $" +
+            Console.WriteLine($"Line #: {selection}" + "| ID:{0}" + "|  Current Salary: $" + $"{entry.Value.Salary}" + 
+              "|  Previous Salary: $" + $"{Convert.ToInt32(entry.Value.Salary / (1 + entry.Value.LastPayHike))}" + "|  Salary increase amount: $" +
                 $"{Convert.ToInt32(entry.Value.Salary) - Convert.ToInt32(entry.Value.Salary / (1 + entry.Value.LastPayHike))}",
                 entry.Key);
             selection++;
+            //LastSalary(employeeInfoData);
           }
+          
           break;
         case 5:
           foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
@@ -289,5 +292,28 @@ namespace EmployeeDrugScreensImproved
       Console.ReadLine();
     }
 
+    private static void LastSalary(Dictionary<string, Employee> employeeInfoData)
+    {
+      string docPathSal = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+      using (StreamWriter outputCSVFile = new StreamWriter(Path.Combine(docPathSal, "Salary Before Last Raise.csv")))
+      {
+        string[] csvFileHead = new string[]
+        {
+          "ID", "Prefix", "First Name", "Last Name", "Salary", "Last Pay Hike"
+        };
+        outputCSVFile.WriteLine(string.Join(",", csvFileHead));
+
+        foreach (KeyValuePair<string, Employee> item in employeeInfoData)
+        {
+          string[] empValues = new string[]
+          {
+            item.Value.ID, item.Value.NamePrefix, item.Value.FirstName, item.Value.LastName, Convert.ToString(item.Value.Salary),
+                Convert.ToString(item.Value.LastPayHike)
+          };
+          outputCSVFile.WriteLine(string.Join(",", empValues));
+        }
+      }
+    }
   }
 }
