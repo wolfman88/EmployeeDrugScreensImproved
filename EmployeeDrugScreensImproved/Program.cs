@@ -213,6 +213,28 @@ namespace EmployeeDrugScreensImproved
               entry.Value.LastName, entry.Value.FirstName, entry.Value.UserName, entry.Value.Password);
             selection++;
           }
+          string docPathUserPass = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+          using (StreamWriter outputCSVFile = new StreamWriter(Path.Combine(docPathUserPass, "Current Employee Usernames and Passwords.csv")))
+          {
+            string[] csvFileHead = new string[]
+            {
+          "ID", "Prefix", "First Name", "Last Name", "Gender", "E-Mail", "Username", "Password"
+            };
+            outputCSVFile.WriteLine(string.Join(",", csvFileHead));
+
+            foreach (KeyValuePair<string, Employee> item in employeeInfoData)
+            {
+              string[] empValues = new string[]
+              {
+            item.Value.ID, item.Value.NamePrefix, item.Value.FirstName, item.Value.LastName, item.Value.Gender,
+            item.Value.EMail, item.Value.UserName, item.Value.Password
+              };
+
+              outputCSVFile.WriteLine(string.Join(",", empValues));
+
+            }
+          }
           break;
         case 9:
           foreach (KeyValuePair<string, Employee> entry in employeeInfoData)
